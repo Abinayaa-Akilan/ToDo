@@ -1,12 +1,16 @@
 package com.codeio.HelloWorld;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/todo")
 public class ToDoController {
+    @Autowired
+    private ToDoService service;
     @GetMapping("/get")
     String getToDo(){
+        service.PrintToDo();
         return "ToDo";
     }
     //Path variable
@@ -21,5 +25,9 @@ public class ToDoController {
     @PostMapping("/create")
     String createUser(@RequestBody String body){
         return body;
+    }
+    @PutMapping("/update/{id}")
+    String updateUser(@PathVariable int body){
+        return "Heyy";
     }
 }
